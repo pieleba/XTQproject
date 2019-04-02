@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/echarts.js' %}"></script>
+    <script>
+
+        function getJsonData() {//发送ajax请求,从后台获取json数据
+            $.ajax({
+                url: '/mm_order/getData/',
+                type: 'POST',
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+
+                },
+
+                async: true,
+                dataType: 'json',
+                success: function (resp) {
+                    console.log('成功进入异步请求成功回调函数');
+
+                    mychart.setOption({
+
+                        title: {
+                            text: '本店前10美食'
+                        },
+                        color:['#FFA500'],
+
+                        tooltip: {},
+                        legend: {
+                            data: ['人气量']
+                        },
+                        xAxis: {
+                            axisLabel:{
+                                interval:0,
+                                rotate:30
+                            },
+
+                        data: resp.xfname,
+
+                        },
+                        yAxis: {
+
+                        },
+                        series: {
+                            name: '人气量',
+                            type: 'bar',
+                            data: resp.yfpopnum
+                        },
+                    })
+                },
+                error: function (msg) {
+                    console.log(msg);
+                    alert('系统发生错误');
+                }
+
+            })
+        }
+
+
+    </script>
+
+</head>
+<body>
+<div id="main1" style="width: 800px; height: 600px; margin: 0 auto;"></div>
+<div name="csrfmiddlewaretoken">{% csrf_token %}</div>
+<script>
+    //DOM 结构绘制完毕后执行该代码
+    var mychart = echarts.init(document.getElementById('main1'));
+    getJsonData();
+</script>
+</body>
+</html>

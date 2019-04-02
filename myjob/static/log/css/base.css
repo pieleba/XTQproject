@@ -1,0 +1,159 @@
+@charset "UTF-8";
+@media screen and (max-width: 2048px) {
+    html {
+        font-size: 273.06667px; } }
+
+@media screen and (max-width: 1920px) {
+    html {
+        font-size: 256px; } }
+
+@media screen and (max-width: 1440px) {
+    html {
+        font-size: 192px; } }
+
+@media screen and (max-width: 1600px) {
+    html {
+        font-size: 213.33333px; } }
+
+@media screen and (max-width: 1242px) {
+    html {
+        font-size: 165.6px; } }
+
+@media screen and (max-width: 1140px) {
+    html {
+        font-size: 152px; } }
+
+@media screen and (max-width: 1280px) {
+    html {
+        font-size: 170.66667px; } }
+
+@media screen and (max-width: 1024px) {
+    html {
+        font-size: 136.53333px; } }
+
+@media screen and (max-width: 1080px) {
+    html {
+        font-size: 144px; } }
+
+@media screen and (max-width: 960px) {
+    html {
+        font-size: 128px; } }
+
+@media screen and (max-width: 800px) {
+    html {
+        font-size: 106.66667px; } }
+
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 102.4px; } }
+
+@media screen and (max-width: 736px) {
+    html {
+        font-size: 98.13333px; } }
+
+@media screen and (max-width: 732px) {
+    html {
+        font-size: 97.6px; } }
+
+@media screen and (max-width: 720px) {
+    html {
+        font-size: 96px; } }
+
+@media screen and (max-width: 667px) {
+    html {
+        font-size: 88.93333px; } }
+
+@media screen and (max-width: 644px) {
+    html {
+        font-size: 85.8666667px; } }
+
+@media screen and (max-width: 640px) {
+    html {
+        font-size: 85.33333px; } }
+
+@media screen and (max-width: 600px) {
+    html {
+        font-size: 80px; } }
+
+@media screen and (max-width: 568px) {
+    html {
+        font-size: 75.73333px; } }
+
+@media screen and (max-width: 540px) {
+    html {
+        font-size: 72px; } }
+
+@media screen and (max-width: 533px) {
+    html {
+        font-size: 71.06667px; } }
+
+@media screen and (max-width: 480px) {
+    html {
+        font-size: 64px; } }
+
+@media screen and (max-width: 435px) {
+    html {
+        font-size: 58px; } }
+
+@media screen and (max-width: 414px) {
+    html {
+        font-size: 55.2px; } }
+
+@media screen and (max-width: 412px) {
+    html {
+        font-size: 54.93333px; } }
+
+@media screen and (max-width: 400px) {
+    html {
+        font-size: 53.33333px; } }
+
+@media screen and (max-width: 385px) {
+    html {
+        font-size: 51.33333px; } }
+
+@media screen and (max-width: 384px) {
+    html {
+        font-size: 51.2px; } }
+
+@media screen and (max-width: 375px) {
+    html {
+        font-size: 50px; } }
+
+@media screen and (max-width: 360px) {
+    html {
+        font-size: 48px; } }
+
+@media screen and (max-width: 342px) {
+    html {
+        font-size: 45.6px; } }
+
+@media screen and (max-width: 320px) {
+    html {
+        font-size: 42.66667px; } }
+
+@media screen and (max-width: 300px) {
+    html {
+        font-size: 40px; } }
+
+@media screen and (max-width: 240px) {
+    html {
+        font-size: 32px; } }
+
+input{
+    -webkit-user-modify: read-write-plaintext-only;
+    border: none;
+    outline:medium;
+}
+
+body,ul,ol,dl,dd,h1,h2,h3,h4,h5,h6,p,input,select,textarea,form{margin: 0; padding: 0;}
+body{font:14px/1.4rem "微软雅黑";}
+img{border:none;}
+ul,ol{list-style:none;}
+input,select,textarea{outline:none;border:none;background:none;}
+textarea{resize:none;}
+a{text-decoration:none;}
+
+/*清浮动*/
+.clear{
+    clear:both;
+}

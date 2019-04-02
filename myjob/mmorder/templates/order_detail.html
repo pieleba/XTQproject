@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单详情</title>
+    <script type="text/javascript" src="{%static 'js/jquery.js'  %}"></script>
+    <script>
+        $(function () {
+            $("#alipay").click(function () {
+                console.log("支付");
+                var orderid = $(this).attr("orderid");
+                $.getJSON("/mm_order/payed/",{"orderid":orderid},function (data) {
+                    window.open('/mm_order/index/?orderprice=' + data['orderprice'], target='_self');
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+        订单编号：{{ orders.id }}
+        <br/>
+        {% for orderfoods in orders.orderdetail_set.all %}
+            <img src="{{ orderfoods.foods.fimg }}">
+            <p>{{ orderfoods.foods.fname }}</p>
+            商品：{{ orderfoods.order_foods_num }}&nbsp;&nbsp;单价：{{ orderfoods.foods.fprice }}<br/>
+        {% endfor %}
+        <h6 class="total_price">总价{{ orders.price }}</h6>
+        <button orderid="{{ orders.id }}" id="alipay">支付</button>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购买食物</title>
+    <script type="text/javascript" src="{%static 'js/jquery.js'  %}"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".subshopping").click(function() {
+                var $sub_button = $(this);
+                var span_num = $sub_button.next("span").html();
+                if(span_num == "0"){
+                    alert("购物车本无此商品!");
+                    return;
+                }
+                var foodsid = $sub_button.attr('foodsid');
+
+                $.get('/mm_order/subfromcart/',{'foodsid':foodsid},function(data) {
+                    console.log(data);
+                    if (data['status'] === 302){
+                        window.open('/mm_order/log/',target='_self');
+                        alert('hello')
+                    }
+                    $sub_button.next('span').html(data['cart_foods_num']);
+                })
+            })
+
+            $(".addshopping").click(function() {
+                var $add = $(this);
+                var foodsid = $add.attr('foodsid');
+
+                $.get('/mm_order/addtocart/',{'foodsid':foodsid},function(data) {
+                    console.log(data);
+                    if (data['status']  === 302){
+                        window.open('/mm_order/log/',target='_self');
+                    } else{
+                        $add.prev('span').html(data['cart_foods_num']);
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body style="background-color: lemonchiffon">
+    <a href="">首页</a>
+    <a href="{% url 'mm_order:shop' %}" class="shop" style="font-size: 20px">&nbsp&nbsp点餐&nbsp&nbsp</a>
+    <a href="{% url 'mm_order:go_cart' %}" class="shop" style="font-size: 20px">&nbsp&nbsp购物车&nbsp&nbsp</a>
+    <a href="{% url 'mm_order:mine' %}" class="cart" style="font-size: 20px">&nbsp&nbsp个人中心&nbsp&nbsp</a>
+    <br/>
+    {% for foodtype in foodtypes %}
+        <a href="{% url 'mm_order:shop_message' foodtype.id %}" target="_self"><button id="foodtype">{{ foodtype.typename }}</button></a>
+    {% endfor %}
+    <br/>
+    {% for foods in foods_list %}
+        <span style="color: red;padding-left: 50px">{{ foods.fname }}</span><br/>
+        <div style="height: 250px; width: 1200px">
+            <img src="{{ foods.fimg }}" style="float:left;">
+            <p style="float: left;padding-top: 150px;">人气：{{ foods.fpopnum }} &nbsp;&nbsp;价格：¥{{ foods.fprice }}</p>
+            <section style="float: right;padding-top: 100px;">
+                <button foodsid="{{ foods.fid }}" class="subshopping" style="font-size: 50px;width: 60px;height: 60px">-</button>
+                <span style="font-size: 60px">
+                    {% if foods.cart_food_num %}
+                    {{ foods.cart_food_num }}
+                    {% else %}
+                        0
+                    {% endif %}
+                </span>
+                <button foodsid="{{ foods.fid }}" class="addshopping" style="font-size: 50px;width: 60px;height: 60px">+</button>
+            </section>
+        </div>
+        <hr/>
+    {% endfor %}
+</body>
+</html>

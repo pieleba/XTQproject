@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>未支付订单</title>
+    <script type="text/javascript" src="{%static 'js/jquery.js'  %}"></script>
+    <script>
+        $(function () {
+            $(".order").click(function () {
+                var $order = $(this);
+                var order_id = $order.attr("orderid");
+                window.open('/mm_order/orderdetail/?orderid=' + order_id,target="_self")
+            })
+        })
+    </script>
+</head>
+<body>
+    {% for order in orders %}
+        <li>
+            <ul class="order" orderid="{{ order.id }}">
+                订单编号：{{ order.id }} <br/>
+                {% for orderfoods in order.orderdetail_set.all %}
+                    <li>
+                        <img src="{{ orderfoods.foods.fimg }}"><br/>
+                        {{ orderfoods.foods.fname }}&nbsp;&nbsp;&nbsp;{{ orderfoods.foods.price }} &nbsp;&nbsp;&nbsp;{{ ordergoods.order_goods_num }}
+                    </li>
+                {% endfor %}
+
+            </ul>
+        </li>
+    {% endfor %}
+
+</body>
+</html>

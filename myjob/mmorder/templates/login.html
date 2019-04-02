@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Lowin</title>
+	<link rel="stylesheet" href="/static/log/css/auth.css">
+</head>
+
+<body>
+	<div class="lowin">
+		<div class="lowin-brand">
+			<img src="/static/log/imgs/kodinger.jpg" alt="logo">
+		</div>
+		<div class="lowin-wrapper">
+			<div class="lowin-box lowin-login">
+				<div class="lowin-box-inner">
+                    <div class="error">
+                    {% if errors %}
+                    <h4  style="margin-left: 200px; color: #ff6464" >{{ errors.msg }}</h4>
+                    {% endif %}
+					<form action="{% url 'mm_order:log' %}" method="post">
+                        {% csrf_token %}
+						<p>Sign in to continue</p>
+						<div class="lowin-group">
+							<label>Username <a href="#" class="login-back-link">Sign in?</a></label>
+							<input type="text" autocomplete="username" name="username" class="lowin-input">
+						</div>
+						<div class="lowin-group password-group">
+							<label>Password <a href="#" class="forgot-link">Forgot Password?</a></label>
+							<input type="password" name="password" autocomplete="current-password" class="lowin-input">
+						</div>
+                        <div class="lowin-group">
+                            <a href="{% url 'mm_order:useWeibologin' %}"><img src="/static/mine1/images/微博.jpg" width="100px" height="50px"></a>
+                        </div>
+{#						<button type="submit" class="lowin-btn login-btn">#}
+{#							Sign In#}
+{#						</button>#}
+                        <input type="submit" value="Sign In" class="lowin-btn">
+						<div class="text-foot">
+							Don't have an account? <a href="{% url 'mm_order:reg' %}" class="register-link">Register</a>
+						</div>
+					</form>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="/static/log/js/auth.js"></script>
+	<script>
+		Auth.init({
+			login_url: '#login',
+			forgot_url: '#forgot'
+		});
+	</script>
+</body>
+</html>
